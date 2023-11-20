@@ -4,6 +4,7 @@ on: pull_request
 
 jobs:
   test:
+    name: Unit tests
     runs-on: ubuntu-latest
 
     steps:
@@ -22,6 +23,7 @@ jobs:
         run: npm run test
 
   validate:
+    name: Lint checks and build
     runs-on: ubuntu-latest
 
     steps:

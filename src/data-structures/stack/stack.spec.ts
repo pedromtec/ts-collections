@@ -21,6 +21,6 @@ describe('Stack', () => {
     stack.push(2)
     stack.push(5)
 
-    expect(stack.search(2)).toBe(-1)
+    expect(stack.search(2)).toBe(0)
   })
 })
