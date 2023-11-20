@@ -15,4 +15,12 @@ describe('Stack', () => {
 
     expect(stack.pop()).toBe('Food')
   })
+
+  it('should search an item and return its index', () => {
+    const stack = new Stack<number>()
+    stack.push(2)
+    stack.push(5)
+
+    expect(stack.search(2)).toBe(-1)
+  })
 })
