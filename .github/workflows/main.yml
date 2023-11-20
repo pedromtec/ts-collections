@@ -1,4 +1,4 @@
-name: Unit tests + Build + Eslint checks
+name: Main
 
 on: pull_request
 
