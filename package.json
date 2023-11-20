@@ -10,7 +10,8 @@
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "lint:ts": "tsc",
-    "build": "tsup src/index.ts --format cjs,esm --dts"
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "validate": "npm run lint:ts && npm run lint && npm run build"
   },
   "keywords": [
     "Typescript",

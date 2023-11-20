@@ -1,21 +1,44 @@
-name: Build and Test
+name: Unit tests + Build + Eslint checks
 
 on: pull_request
 
 jobs:
-  build-and-test:
+  test:
+    name: Unit tests
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
-      - name: Using Node.js
-        uses: actions/setup-node@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 18.
-      - name: run install, lint, build and test
-        run: |
-          npm install
-          npm lint
-          npm lint:ts
-          npm run build 
-          npm run test
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+        
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm run test
+
+  validate:
+    name: Lint checks and build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+        # Validates project
+      - name: lint checks + build
+        run: npm run validate
