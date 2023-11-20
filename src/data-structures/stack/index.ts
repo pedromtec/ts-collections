@@ -13,6 +13,10 @@ export class Stack<T> {
     this.#items.push(item)
   }
 
+  /**
+   * Checks if the stack is empty
+   * @returns true if the stack is empty
+   */
   empty(): boolean {
     return this.#items.length < 1
   }
