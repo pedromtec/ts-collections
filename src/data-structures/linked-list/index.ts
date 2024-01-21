@@ -8,6 +8,10 @@ class LinkedListNode<T> {
   }
 }
 
+const isValidIndex = (index: number) => {
+  return index >= 0 && Math.floor(index) === index
+}
+
 export class LinkedList<T> {
   private head: LinkedListNode<T> | null = null
 
@@ -23,6 +27,20 @@ export class LinkedList<T> {
     const node = new LinkedListNode(value)
     node.next = this.head
     this.head = node
+  }
+
+  get(index: number) {
+    if (!isValidIndex(index)) {
+      return undefined
+    }
+
+    let current = this.head
+    let currentIndex = 0
+    while (currentIndex < index && current !== null) {
+      current = current.next
+      currentIndex++
+    }
+    return current ? current.value : undefined
   }
 
   toArray() {
