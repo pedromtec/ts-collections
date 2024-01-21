@@ -9,9 +9,14 @@ class LinkedListNode<T> {
 }
 
 export class LinkedList<T> {
-  head: LinkedListNode<T> | null = null
+  private head: LinkedListNode<T> | null = null
+
   constructor(initialValues?: T[]) {
     initialValues?.forEach((value) => this.addLast(value))
+  }
+
+  isEmpty() {
+    return this.head === null
   }
 
   addFirst(value: T) {
@@ -30,9 +35,31 @@ export class LinkedList<T> {
     return array
   }
 
+  removeFirst() {
+    if (this.head) {
+      this.head = this.head?.next
+    }
+  }
+
+  removeLast() {
+    if (!this.head) {
+      return
+    }
+    if (!this.head.next) {
+      this.removeFirst()
+      return
+    }
+
+    let current = this.head
+    while (current.next?.next !== null) {
+      current = current.next!
+    }
+    current.next = current.next.next
+  }
+
   addLast(value: T) {
     const node = new LinkedListNode(value)
-    if (!this.head) {
+    if (this.head === null) {
       this.head = node
       return
     }
